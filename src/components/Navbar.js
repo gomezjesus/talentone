@@ -1,27 +1,29 @@
 import React, { Component } from "react";
-
+import { Link } from "react-router-dom";
 class Navbar extends Component {
   render() {
     return (
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand">TalentOne</a>
-        <button class="navbar-toggler" type="button">
-          <span class="navbar-toggler-icon"></span>
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <Link className="navbar-brand">TalentOne</Link>
+        <button className="navbar-toggler" type="button">
+          <span className="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav">
-            <a class="nav-item nav-link active">
-              Home <span class="sr-only">(current)</span>
-            </a>
-            <a class="nav-item nav-link">Features</a>
-            <a class="nav-item nav-link">Pricing</a>
-            <a
-              class="nav-item nav-link disabled"
+        <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div className="navbar-nav">
+            <Link className="nav-item nav-link active" to="/">
+              <span className="">Home</span>
+            </Link>
+            <Link className="nav-item nav-link" to="/Companies">
+              Add Company
+            </Link>
+            <Link className="nav-item nav-link">Pricing</Link>
+            <Link
+              className="nav-item nav-link disabled"
               tabindex="-1"
               aria-disabled="true"
             >
               Disabled
-            </a>
+            </Link>
           </div>
         </div>
       </nav>

@@ -7,7 +7,7 @@ class CompanyForm extends Component {
     });
   }
 
-  handleChange = e => {
+  onChange = e => {
     this.setState({
       [e.target.name]: e.target.value
     });
@@ -32,7 +32,7 @@ class CompanyForm extends Component {
               name="name"
               placeholder="Nombre de la compañia"
               value={this.props.formValues.name}
-              onChange={this.props.handleChange}
+              onChange={this.props.onChange}
             />
             <br></br>
             <label>Descripción</label>
@@ -42,7 +42,7 @@ class CompanyForm extends Component {
               placeholder="Descripcion de la compañia"
               name="description"
               value={this.props.formValues.description}
-              onChange={this.props.handleChange}
+              onChange={this.props.onChange}
             />
             <br></br>
             <label>Tipo de Industria</label>
@@ -52,16 +52,21 @@ class CompanyForm extends Component {
               placeholder="Tipo de Industria"
               name="industry"
               value={this.props.formValues.industry}
-              onChange={this.props.handleChange}
+              onChange={this.props.onChange}
             />
             <br></br>
             <label>Estado</label>
             <select
-              value={this.props.state}
+              value={this.props.formValues.selectedState}
               className="form-control"
-              onChange={this.props.handleChange}
-              name="state"
+              onChange={this.props.onChange}
+              name="selectedState"
             >
+              {!this.props.formValues.selectedState && (
+                <option key="default" value="Selecciona un Estado">
+                  Selecciona un Estado
+                </option>
+              )}
               {!!this.props.states &&
                 this.props.states.map(e => (
                   <option key={e.clave} value={e.nombre}>
@@ -73,8 +78,8 @@ class CompanyForm extends Component {
             <label>Municipio</label>
             <select
               className="form-control"
-              value={this.state.selectedCity}
-              onChange={this.handleChange}
+              value={this.props.formValues.selectedCity}
+              onChange={this.onChange}
               name="selectedCity"
             >
               {!!this.props.cities &&
@@ -89,7 +94,7 @@ class CompanyForm extends Component {
               type="text"
               className="form-control"
               placeholder="Descripcion de la compañia"
-              onChange={this.props.handleChange}
+              onChange={this.props.onChange}
               name="industry"
               value={this.props.formValues.industry}
             />
@@ -99,9 +104,9 @@ class CompanyForm extends Component {
               type="text"
               className="form-control"
               placeholder="Descripcion de la compañia"
-              onChange={this.props.handleChange}
+              onChange={this.props.onChange}
               name="mission"
-              value={this.props.formValues.}
+              value={this.props.formValues.mission}
             />
             <br></br>
             <label>Visión</label>
@@ -109,8 +114,9 @@ class CompanyForm extends Component {
               type="text"
               className="form-control"
               placeholder="Descripcion de la compañia"
-              onChange={this.props.handleChange}
+              onChange={this.props.onChange}
               name="vission"
+              value={this.props.formValues.vission}
             />
             <br></br>
           </div>

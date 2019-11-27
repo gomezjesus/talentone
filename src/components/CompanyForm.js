@@ -23,7 +23,7 @@ class CompanyForm extends Component {
   render() {
     return (
       <div>
-        <form className="companyForm">
+        <form className="companyForm" onSubmit={this.props.onSubmit}>
           <div className="form-group">
             <label>Nombre Compañia</label>
             <input
@@ -79,7 +79,7 @@ class CompanyForm extends Component {
             <select
               className="form-control"
               value={this.props.formValues.selectedCity}
-              onChange={this.onChange}
+              onChange={this.props.onChange}
               name="selectedCity"
             >
               {!!this.props.cities &&
@@ -119,6 +119,9 @@ class CompanyForm extends Component {
               value={this.props.formValues.vission}
             />
             <br></br>
+            <button type="submit" className="btn btn-primary btn-lg btn-block">
+              Añadir compañia
+            </button>
           </div>
         </form>
       </div>

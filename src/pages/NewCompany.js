@@ -2,31 +2,31 @@ import React, { Component } from "react";
 import CompanyForm from "../components/CompanyForm";
 import Estados from "../utils/estados";
 import Municipios from "../utils/estado-municipio";
+import api from "../utils/api";
 class NewCompany extends Component {
-  constructor() {
-    super();
-    this.state = {
-      states: null,
-      cities: null,
-      form: {
-        name: "",
-        description: "",
-        industry: "",
-        city: "",
-        state: "",
-        mission: "",
-        vission: "",
-        legalName: "",
-        selectedCity: "",
-        selectedState: ""
-      }
-    };
+  state = {
+    states: Estados,
+    cities: null,
+    form: {
+      name: "",
+      description: "",
+      industry: "",
+      city: "",
+      state: "",
+      mission: "",
+      vission: "",
+      legalName: "",
+      selectedCity: "",
+      selectedState: ""
+    },
+    companies: []
+  };
 
-    this.handleChange = this.handleChange.bind(this);
-  }
-  componentDidMount() {
+  async componentDidMount() {
+    let res = await api.companies().getCompanies();
+
     this.setState({
-      states: Estados
+      companies: res.data
     });
   }
 
@@ -37,6 +37,16 @@ class NewCompany extends Component {
         [e.target.name]: e.target.value
       }
     });
+  };
+
+  handleSubmit = async e => {
+    e.preventDefault();
+    api
+      .companies()
+      .addCompany(this.state.form)
+      .then(res => {
+        console.log(res);
+      });
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -54,6 +64,7 @@ class NewCompany extends Component {
         formValues={this.state.form}
         states={this.state.states}
         cities={this.state.cities}
+        onSubmit={this.handleSubmit}
       />
     );
   }

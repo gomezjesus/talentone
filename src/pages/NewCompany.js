@@ -45,7 +45,10 @@ class NewCompany extends Component {
       .companies()
       .addCompany(this.state.form)
       .then(res => {
+        debugger;
         console.log(res);
+        alert(res.statusText);
+        this.props.history.push("/");
       });
   };
 
